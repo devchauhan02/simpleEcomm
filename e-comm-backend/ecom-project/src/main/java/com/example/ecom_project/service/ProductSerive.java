@@ -28,4 +28,14 @@ public class ProductSerive {
         return repo.save(prod);
     }
 
+    public ProductModel updateProduct(int id , ProductModel prod , MultipartFile imageFile) throws IOException{
+        prod.setImageData(imageFile.getBytes());
+        prod.setImageName(imageFile.getOriginalFilename());
+        prod.setImageType(imageFile.getContentType());
+        return repo.save(prod);
+    }
+
+    public void deleteProduct(int id) {
+        repo.deleteById(id);
+    }
 }
