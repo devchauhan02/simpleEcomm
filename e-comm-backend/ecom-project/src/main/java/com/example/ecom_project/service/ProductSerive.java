@@ -11,7 +11,11 @@ import java.util.List;
 public class ProductSerive {
     @Autowired
     private ProductRepo repo;
-    public List<ProductModel> getAllProduct(){
+    public List<ProductModel> getAllProducts(){
         return repo.findAll();
+    }
+
+    public ProductModel getProductByID(int id){
+        return repo.findById(id).orElse(null);
     }
 }
