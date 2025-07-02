@@ -71,15 +71,14 @@ const Home = ({ selectedCategory }) => {
           </h2>
         ) : (
           filteredProducts.map((product) => {
-            const { id, brand, name, price, quantity, available, imageUrl } =
+            const { id, brand, name, price, productAvailable, imageUrl } =
               product;
             const cardStyle = {
               width: "18rem",
               height: "12rem",
               boxShadow: "rgba(0, 0, 0, 0.24) 0px 2px 3px",
-              backgroundColor: available ? "#fff" : "#ccc",
+              backgroundColor: productAvailable ? "#fff" : "#ccc",
             };
-            const isAvailable = quantity ? quantity > 0 : false;
             return (
               <div
                 className="card mb-3"
@@ -87,7 +86,7 @@ const Home = ({ selectedCategory }) => {
                   width: "18rem",
                   height: "24rem",
                   boxShadow: "rgba(0, 0, 0, 0.24) 0px 2px 3px",
-                  backgroundColor: available ? "#fff" : "#ccc",
+                  backgroundColor: productAvailable ? "#fff" : "#ccc",
                   margin: "10px",
                   display: "flex",
                   flexDirection: "column",
@@ -158,9 +157,9 @@ const Home = ({ selectedCategory }) => {
                           e.preventDefault();
                           addToCart(product);
                         }}
-                        disabled={!isAvailable}
+                        disabled={!productAvailable}
                       >
-                        {isAvailable ? "Add to Cart" : "Out of Stock"}
+                        {productAvailable ? "Add to Cart" : "Out of Stock"}
                       </button>
                     </div>
                   </div>
