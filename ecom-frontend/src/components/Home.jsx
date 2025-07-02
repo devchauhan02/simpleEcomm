@@ -79,6 +79,7 @@ const Home = ({ selectedCategory }) => {
               boxShadow: "rgba(0, 0, 0, 0.24) 0px 2px 3px",
               backgroundColor: available ? "#fff" : "#ccc",
             };
+            const isAvailable = quantity ? quantity > 0 : false;
             return (
               <div
                 className="card mb-3"
@@ -157,9 +158,9 @@ const Home = ({ selectedCategory }) => {
                           e.preventDefault();
                           addToCart(product);
                         }}
-                        disabled={!available}
+                        disabled={!isAvailable}
                       >
-                        {available ? "Add to Cart" : "Out of Stock"}
+                        {isAvailable ? "Add to Cart" : "Out of Stock"}
                       </button>
                     </div>
                   </div>
