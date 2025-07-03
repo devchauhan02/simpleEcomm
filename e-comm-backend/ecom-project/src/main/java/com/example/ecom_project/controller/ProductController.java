@@ -1,8 +1,7 @@
 package com.example.ecom_project.controller;
 
 import com.example.ecom_project.model.ProductModel;
-import com.example.ecom_project.service.ProductSerive;
-import jakarta.servlet.annotation.MultipartConfig;
+import com.example.ecom_project.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -18,7 +17,7 @@ import java.util.List;
 @RequestMapping("/api")
 public class ProductController {
     @Autowired
-    private ProductSerive service;
+    private ProductService service;
 
     @GetMapping("/")
     public String greet(){
@@ -76,7 +75,12 @@ public class ProductController {
            return new ResponseEntity<>("Product Not Found" , HttpStatus.NOT_FOUND);
        }
     }
-
+    @GetMapping("/products/search")
+    public ResponseEntity<List<ProductModel>> searchProducts(@RequestParam String Keyword){
+        System.out.println("searching with" + Keyword);
+        List<ProductModel> prod = service.searchProducts(Keyword);
+        return new ResponseEntity<>(prod , HttpStatus.OK);
+    }
 }
 
 

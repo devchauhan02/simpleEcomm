@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.List;
 
 @Service
-public class ProductSerive {
+public class ProductService {
     @Autowired
     private ProductRepo repo;
     public List<ProductModel> getAllProducts(){
@@ -22,7 +22,7 @@ public class ProductSerive {
     }
 
     public ProductModel addProduct(ProductModel prod, MultipartFile imageFile) throws IOException {
-        prod.setImageName(imageFile.getOriginalFilename()); // ✅ fix here
+        prod.setImageName(imageFile.getOriginalFilename());
         prod.setImageType(imageFile.getContentType());
         prod.setImageData(imageFile.getBytes());
         return repo.save(prod);
@@ -37,5 +37,9 @@ public class ProductSerive {
 
     public void deleteProduct(int id) {
         repo.deleteById(id);
+    }
+
+    public List<ProductModel> searchProducts(String keyword) {
+        return repo.searchProducts(keyword);
     }
 }
